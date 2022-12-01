@@ -1,5 +1,5 @@
 fn parse_file() -> Vec<String> {
-    include_str!("../inputs/1.txt")
+    include_str!("../inputs/01.txt")
         .lines()
         .filter_map(|line| line.parse().ok())
         .collect()
