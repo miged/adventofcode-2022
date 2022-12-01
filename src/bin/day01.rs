@@ -1,24 +1,8 @@
-use std::vec;
-
 fn parse() -> Vec<isize> {
-    let calories: Vec<String> = include_str!("../inputs/01.txt")
-        .lines()
-        .filter_map(|line| line.parse().ok())
-        .collect();
-    let mut total_calories = vec![];
-    let mut total = 0;
-
-    for cal in calories.iter() {
-        match cal.parse::<isize>() {
-            Ok(c) => total += c,
-            Err(_) => {
-                total_calories.push(total);
-                total = 0;
-            }
-        };
-    }
-
-    total_calories
+    include_str!("../inputs/01.txt")
+        .split("\n\n")
+        .map(|e| e.lines().map(|c| c.parse::<isize>().unwrap()).sum())
+        .collect()
 }
 
 fn part1(calories: &[isize]) -> isize {
