@@ -5,18 +5,18 @@ fn parse_file() -> Vec<String> {
         .collect()
 }
 
-fn part1(_input: &[String]) -> isize {
+fn part1(_: &[String]) -> isize {
     todo!();
 }
 
-fn part2(_input: &[String]) -> isize {
+fn _part2(_: &[String]) -> isize {
     todo!();
 }
 
 pub fn main() {
     let input = parse_file();
     println!("DxP1 result: {}", part1(&input));
-    // println!("DxP2 result: {}", part2(&input));
+    //println!("DxP2 result: {}", part2(&input));
 }
 
 // #[test]
