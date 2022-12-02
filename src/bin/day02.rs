@@ -14,22 +14,9 @@ fn part1(input: &[String]) -> isize {
             "Y" => 2,
             "Z" => 3,
             _ => 0,
-        } + match pair[0] {
-            "A" => match pair[1] {
-                "X" => 3,
-                "Y" => 6,
-                _ => 0,
-            },
-            "B" => match pair[1] {
-                "Y" => 3,
-                "Z" => 6,
-                _ => 0,
-            },
-            "C" => match pair[1] {
-                "Z" => 3,
-                "X" => 6,
-                _ => 0,
-            },
+        } + match (pair[0], pair[1]) {
+            ("A", "X") | ("B", "Y") | ("C", "Z") => 3,
+            ("A", "Y") | ("B", "Z") | ("C", "X") => 6,
             _ => 0,
         };
     }
@@ -41,30 +28,15 @@ fn part2(input: &[String]) -> isize {
     for pair in input {
         let pair: Vec<&str> = pair.split(' ').collect();
         score += match pair[1] {
-            "X" => match pair[0] {
-                "A" => 3,
-                "B" => 1,
-                "C" => 2,
-                _ => 0,
-            },
-            "Y" => {
-                3 + match pair[0] {
-                    "A" => 1,
-                    "B" => 2,
-                    "C" => 3,
-                    _ => 0,
-                }
-            }
-            "Z" => {
-                6 + match pair[0] {
-                    "A" => 2,
-                    "B" => 3,
-                    "C" => 1,
-                    _ => 0,
-                }
-            }
+            "Y" => 3,
+            "Z" => 6,
             _ => 0,
-        };
+        } + match (pair[1], pair[0]) {
+            ("X", "B") | ("Y", "A") | ("Z", "C") => 1,
+            ("X", "C") | ("Y", "B") | ("Z", "A") => 2,
+            ("X", "A") | ("Y", "C") | ("Z", "B") => 3,
+            _ => 0,
+        }
     }
     score
 }
